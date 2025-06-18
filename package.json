@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"✔️ No tests specified. This is a placeholder.\" && exit 0"
+    "test": "echo \"✔️ No tests specified. This is a placeholder.\" && exit 0",
+    "build": "echo \"🔧 Nothing to build. This is a placeholder.\""
   },
   "dependencies": {
     "express": "^4.18.2"
