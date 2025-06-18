@@ -18,11 +18,11 @@ jobs:
           node-version: "18"
 
       - name: Install dependencies
-        working-directory: "DevOps Project 10/WEZVA APP/v1"
+        # working-directory: "DevOps Project 10/WEZVA APP/v1"
         run: npm install
 
       - name: Run tests
-        working-directory: "DevOps Project 10/WEZVA APP/v1"
+        # working-directory: "DevOps Project 10/WEZVA APP/v1"
         run: npm test
 
   build:
