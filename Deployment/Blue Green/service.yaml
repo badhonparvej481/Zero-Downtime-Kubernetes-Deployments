@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wezva-app-service
+  namespace: bluegreen
+spec:
+  selector:
+    app: wezva-app
+    version: blue
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 3339
+      targetPort: 3339
+      nodePort: 31339
+#To switch traffic from Blue to Green (Zero Downtime)
+#kubectl patch service wezva-app-service -p '{"spec":{"selector":{"app":"wezva-app","version":"green"}}}'
+#kubectl patch service wezva-app-service -p '{"spec":{"selector":{"app":"wezva-app","version":"blue"}}}'
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WEZVA TECHNOLOGIES</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>WEZVA TECHNOLOGIES </span></h1>
+      <div id="version">Loading version...</div>
+
+      <div class="controls">
+        <div>
+          <div class="label">COLOR</div>
+          <div class="color-square"></div>
+        </div>
+        <button class="start-btn" onclick="start()">START</button>
+        <button class="stop-btn" onclick="stop()">STOP</button>
+      </div>
+
+      <div class="controls">
+        <div class="slider-group">
+          <div class="label">LATENCY</div>
+          <input type="range" id="latency" min="0" max="1000" value="100" />
+          <div><span id="latencyValue">0.1</span>s</div>
+        </div>
+        <div class="slider-group">
+          <div class="label">ERROR</div>
+          <input type="range" id="error" min="0" max="100" value="0" />
+          <div><span id="errorValue">0</span>%</div>
+        </div>
+      </div>
+
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

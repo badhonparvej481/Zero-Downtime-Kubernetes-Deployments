@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rollngupdate-deployment
+  namespace: rollingupdate
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: wezva-app
+  template:
+    metadata:
+      labels:
+        app: wezva-app
+    spec:
+      containers:
+        - name: web
+          image: badhonparvej481/wezva-app:v1
+          # image: badhonparvej481/wezva-app:v2
+          ports:
+            - containerPort: 31339
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rolling-service
+  namespace: rollingupdate
+spec:
+  selector:
+    app: wezva-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 31339
+      targetPort: 31339
+      nodePort: 31339

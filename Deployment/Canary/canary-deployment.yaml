@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: canary-rollout
+  namespace: canary
+spec:
+  replicas: 3
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20
+        - pause: { duration: 10 }
+        - setWeight: 50
+        - pause: { duration: 10 }
+        - setWeight: 100
+  selector:
+    matchLabels:
+      app: wezva-app
+  template:
+    metadata:
+      labels:
+        app: wezva-app
+    spec:
+      containers:
+        - name: web
+          image: badhonparvej481/wezva-app:v1
+          ports:
+            - containerPort: 31339
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: canary-service
+  namespace: canary
+spec:
+  selector:
+    app: wezva-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 31339
+      targetPort: 31339
+      nodePort: 31339

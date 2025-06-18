@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+  namespace: bluegreen
+  labels:
+    app: wezva-app
+    version: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wezva-app
+      version: green
+  template:
+    metadata:
+      labels:
+        app: wezva-app
+        version: green
+    spec:
+      containers:
+        - name: wezva-app
+          image: badhonparvej481/wezva-app:v2
+          ports:
+            - containerPort: 31339
