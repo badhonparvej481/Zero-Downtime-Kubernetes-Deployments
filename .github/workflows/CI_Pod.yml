@@ -15,16 +15,38 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "18"
 
       - name: Install dependencies
+        working-directory: "WEZVA APP/v1"
         run: npm install
 
       - name: Run tests
+        working-directory: "WEZVA APP/v1"
         run: npm test
 
-  deploy:
+  build:
     needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        working-directory: "WEZVA APP/v1"
+        run: npm install
+
+      - name: Run build
+        working-directory: "WEZVA APP/v1"
+        run: npm run build
+
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -32,5 +54,5 @@ jobs:
 
       - name: Simulate Deployment
         run: |
-          echo "Tests passed. Ready to deploy!"
+          echo "Tests & build passed. Ready to deploy!"
           echo "Replace this with actual deployment script if needed."
