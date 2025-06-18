@@ -38,7 +38,6 @@ jobs:
           node-version: "18"
 
       - name: Build Project
-        working-directory: "DevOps Project 10/WEZVA APP/v1"
         run: npm run build
 
   deploy:
