@@ -18,11 +18,11 @@ jobs:
           node-version: "18"
 
       - name: Install dependencies
-        working-directory: "WEZVA APP/v1"
+        working-directory: "DevOps Project 10/WEZVA APP/v1"
         run: npm install
 
       - name: Run tests
-        working-directory: "WEZVA APP/v1"
+        working-directory: "DevOps Project 10/WEZVA APP/v1"
         run: npm test
 
   build:
@@ -37,12 +37,8 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install dependencies
-        working-directory: "WEZVA APP/v1"
-        run: npm install
-
-      - name: Run build
-        working-directory: "WEZVA APP/v1"
+      - name: Build Project
+        working-directory: "DevOps Project 10/WEZVA APP/v1"
         run: npm run build
 
   deploy:
@@ -54,5 +50,5 @@ jobs:
 
       - name: Simulate Deployment
         run: |
-          echo "Tests & build passed. Ready to deploy!"
-          echo "Replace this with actual deployment script if needed."
+          echo "Tests and build passed. Ready to deploy!"
+          echo "Replace this with actual deployment command if needed."
